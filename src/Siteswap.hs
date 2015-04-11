@@ -16,11 +16,8 @@ newtype SiteswapState = SiteswapState Word
 newtype PropCount = PropCount Int
 newtype MaxThrow = MaxThrow Int
 
-mask :: Int -> Word
-mask n = bit n - 1
-
 groundState :: PropCount -> SiteswapState
-groundState (PropCount n) = SiteswapState $ mask n
+groundState (PropCount n) = SiteswapState $ bit n - 1
 
 propCount :: SiteswapState -> PropCount
 propCount (SiteswapState s) = PropCount $ popCount s
