@@ -2,9 +2,7 @@ import Siteswap
 import Control.Applicative
 
 nextStates :: MaxThrow -> SiteswapState -> [(Int, SiteswapState)]
-nextStates mt s = do
-  throw <- availableThrows mt s
-  return (throw, performThrow s throw)
+nextStates mt s = [(t, performThrow s t) | t <- availableThrows mt s]
 
 main :: IO ()
 main = do
