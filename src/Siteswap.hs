@@ -12,7 +12,7 @@ module Siteswap
 import Data.Bits
 import Data.Word
 
-newtype SiteswapState = SiteswapState Word
+newtype SiteswapState = SiteswapState Word deriving (Eq)
 newtype PropCount = PropCount Int
 newtype MaxThrow = MaxThrow Int
 
