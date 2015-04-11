@@ -5,6 +5,8 @@ module Siteswap
   , groundState
   , propCount
   , availableThrows
+  , performThrow
+  , showState
   ) where
 
 import Data.Bits
@@ -22,6 +24,12 @@ groundState (PropCount n) = SiteswapState $ mask n
 
 propCount :: SiteswapState -> PropCount
 propCount (SiteswapState s) = PropCount $ popCount s
+
+showState :: MaxThrow -> SiteswapState -> String
+showState (MaxThrow mt) (SiteswapState s) = map bin [mt, mt - 1..0]
+  where bin i
+          | testBit s i = '1'
+          | otherwise = '0'
 
 availableThrows :: MaxThrow -> SiteswapState -> [Int]
 availableThrows (MaxThrow mt) (SiteswapState s)
