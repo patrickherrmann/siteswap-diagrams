@@ -11,6 +11,10 @@ copyright:           2015 Patrick Herrmann
 build-type:          Simple
 cabal-version:       >=1.10
 
+source-repository head
+  type:              git
+  location:          https://github.com/patrickherrmann/siteswap-diagrams.git
+  
 executable siteswap
   main-is:             Main.hs
   ghc-options:         -Wall
