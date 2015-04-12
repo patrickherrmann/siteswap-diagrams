@@ -1,29 +1,35 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 import Siteswap
-import Control.Applicative
-import Control.Monad.State.Lazy
-import Data.List
+import Data.GraphViz.Types.Canonical
+import Data.GraphViz.Printing
+import qualified Data.Text.Lazy.IO as T
 
-nextStates :: MaxThrow -> SiteswapState -> [(Int, SiteswapState)]
-nextStates mt s = [(t, performThrow s t) | t <- availableThrows mt s]
+dotEdge :: MaxThrow -> SiteswapEdge -> DotEdge String
+dotEdge mt (from, to, throw) = DotEdge {
+  fromNode = showState mt from,
+  toNode = showState mt to,
+  edgeAttributes = []
+}
 
-createGraph' :: MaxThrow -> SiteswapState -> State [SiteswapState] [(SiteswapState, SiteswapState, Int)]
-createGraph' mt s = do
-  let ss' = nextStates mt s
-  let edge (i, s') = (s, s', i)
-  let edges = map edge ss'
-  visited <- get
-  let neighbors = map snd ss' \\ visited
-  put (s:visited)
-  foldM (\es n -> (++ es) <$> createGraph' mt n) edges neighbors
-
-createGraph :: MaxThrow -> SiteswapState -> [(SiteswapState, SiteswapState, Int)]
-createGraph mt s = evalState (createGraph' mt s) []
+createDotGraph :: MaxThrow -> [SiteswapEdge] -> DotGraph String
+createDotGraph mt es = DotGraph {
+  strictGraph = True,
+  directedGraph = True,
+  graphID = Just (Str "Siteswap"),
+  graphStatements = DotStmts {
+    attrStmts = [],
+    subGraphs = [],
+    nodeStmts = [],
+    edgeStmts = map (dotEdge mt) es
+  }
+}
 
 main :: IO ()
 main = do
   let mt = MaxThrow 5
   let pc = PropCount 3
   let gs5 = groundState pc
-  let edges = createGraph mt gs5
-  let showEdge (a, b, l) = print (showState mt a, showState mt b, l)
-  mapM_ showEdge edges
+  let edges = getEdges mt gs5
+  let code = renderDot . toDot $ createDotGraph mt edges
+  T.putStrLn code
