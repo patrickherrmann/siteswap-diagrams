@@ -42,6 +42,6 @@ $ ./dist/build/siteswap/siteswap -p 3 -m 5 | dot -Tpng -o image.png
 
 ## Example
 
-The command above renders the image below; 3 prop patterns with max height 5. Notice the ground state 1110 with a loop. This is the basic three prop cascade. You can find every siteswap as a path through the graph, e.g. 441, 531, 45141, etc.
+The command above renders the image below; 3 prop patterns with max height 5. Notice the ground state 111000 with a loop. This is the basic three prop cascade. You can find every siteswap as a path through the graph, e.g. 441, 531, 45141, etc.
 
 ![p3m5](http://i.imgur.com/NMNKaxZ.png?1)
