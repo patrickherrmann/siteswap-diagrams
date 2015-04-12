@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import CLI
+import Options.Applicative
 import Siteswap
 import Data.GraphViz.Types.Canonical
 import Data.GraphViz.Printing
@@ -36,8 +38,9 @@ createDotGraph ns es = DotGraph {
 
 main :: IO ()
 main = do
-  let mt = MaxThrow 5
-  let pc = PropCount 3
+  opts <- execParser optParser
+  let pc = PropCount $ props opts
+  let mt = MaxThrow $ maxThrow opts
   let gs5 = groundState pc
   let edges = getEdges mt gs5
   let (nodes, _, _) = unzip3 edges
