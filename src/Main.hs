@@ -12,7 +12,7 @@ dotEdge :: MaxThrow -> SiteswapEdge -> DotEdge String
 dotEdge mt (from, to, throw) = DotEdge {
   fromNode = showState mt from,
   toNode = showState mt to,
-  edgeAttributes = [textLabel . T.pack . show $ throw]
+  edgeAttributes = [ textLabel . T.pack . show $ throw , color Gray50 ]
 }
 
 dotNode :: MaxThrow -> SiteswapState -> DotNode String
