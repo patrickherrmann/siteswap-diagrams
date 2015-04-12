@@ -4,7 +4,7 @@ This utility takes in a number of props and a maximum throw height, from which i
 
 Each vertex represents a state. The state represents the height of each object, and thus the timing for each to fall. Each edge is a throw, which progresses time and changes the state of the pattern. The number given to each edge is the height of the throw.
 
-The ground state has all of its 1's on the right, e.g. 0111 for 3 prop ground state. Every ground state has a loop; throwing a 3 from 3 prop ground state yields the three prop ground state.
+The ground state has all of its 1's on the left, e.g. 1110 for 3 prop ground state. Every ground state has a loop; throwing a 3 from 3 prop ground state yields the three prop ground state.
 
 Each cycle in the graph is a loopable pattern. Cycles that pass through the ground state are ground state patterns, and cycles that don't are excited state patterns. Finding transitions between patterns is as easy as finding paths from one to the other.
 
@@ -39,3 +39,9 @@ Rendering images with graphviz:
 ```
 $ ./dist/build/siteswap/siteswap -p 3 -m 5 | dot -Tpng -o image.png
 ```
+
+## Example
+
+The command above renders the image below; 3 prop patterns with max height 5. Notice the ground state 1110 with a loop. This is the basic three prop cascade. You can find every siteswap as a path through the graph, e.g. 441, 531, 45141, etc.
+
+![p3m5](http://i.imgur.com/NMNKaxZ.png?1)
