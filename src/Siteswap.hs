@@ -29,7 +29,7 @@ propCount :: SiteswapState -> PropCount
 propCount (SiteswapState s) = PropCount $ popCount s
 
 showState :: MaxThrow -> SiteswapState -> String
-showState (MaxThrow mt) (SiteswapState s) = map bin [mt, mt - 1..0]
+showState (MaxThrow mt) (SiteswapState s) = bin <$> [mt, mt - 1..0]
   where bin i
           | testBit s i = '1'
           | otherwise = '0'
