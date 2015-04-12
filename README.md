@@ -4,7 +4,7 @@ This utility takes in a number of props and a maximum throw height, from which i
 
 Each vertex is a state, representing the height of each object. Each edge is a throw, which progresses time and changes the state of the pattern. The number given to each edge is the height of the throw.
 
-The ground state has all of its 1's on the left, e.g. 111000 for 3 prop ground state. Every ground state has a loop; throwing a *3* from the 3 prop ground state yields the 3 prop ground state.
+The ground state has all of its *1*'s on the left, e.g. *111000* for 3 prop ground state. Every ground state has a loop; throwing a *3* from the 3 prop ground state yields the 3 prop ground state.
 
 Each cycle in the graph is a loopable pattern. Cycles that pass through the ground state are ground state patterns, and cycles that don't are excited state patterns. Finding transitions from one pattern to another is as easy as finding paths from cycle to another.
 
