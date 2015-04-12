@@ -43,5 +43,4 @@ main = do
   let (nodes, _, _) = unzip3 edges
   let dotEdges = map (dotEdge mt) edges
   let dotNodes = map (dotNode mt) (nub nodes)
-  let code = renderDot . toDot $ createDotGraph dotNodes dotEdges
-  TIO.putStrLn code
+  TIO.putStrLn . renderDot . toDot $ createDotGraph dotNodes dotEdges
