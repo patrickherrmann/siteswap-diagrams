@@ -41,8 +41,8 @@ main = do
   opts <- execParser optParser
   let pc = PropCount $ props opts
   let mt = MaxThrow $ maxThrow opts
-  let gs5 = groundState pc
-  let edges = getEdges mt gs5
+  let gs = groundState pc
+  let edges = getEdges mt gs
   let (nodes, _, _) = unzip3 edges
   let dotEdges = map (dotEdge mt) edges
   let dotNodes = map (dotNode mt) (nub nodes)
