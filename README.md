@@ -35,7 +35,7 @@ Available options:
 The resulting dot code can be piped into `dot` to render an image:
 
 ```
-$ ./dist/build/siteswap/siteswap -p 3 -m 5 | dot -Tpng -o image.png
+$ stack exec -- siteswap -p 3 -m 5 | dot -Tpng -o image.png
 ```
 
 ## Example
