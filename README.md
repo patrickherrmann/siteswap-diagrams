@@ -10,18 +10,16 @@ Each cycle in the graph is a loopable pattern. Cycles that pass through the grou
 
 ## Usage
 
-Build using cabal:
+Build with [stack](https://github.com/commercialhaskell/stack):
 
 ```
-$ cabal sandbox init
-$ cabal install --only-dependencies
-$ cabal build
+$ stack build
 ```
 
 Usage is documented with `--help`:
 
 ```
-$ ./dist/build/siteswap/siteswap --help
+$ stack exec -- siteswap --help
 Generate siteswap state diagrams
 
 Usage: siteswap (-p|--props N) (-m|--maxThrow H)
