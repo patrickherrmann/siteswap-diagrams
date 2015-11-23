@@ -13,13 +13,13 @@ Each cycle in the graph is a loopable pattern. Cycles that pass through the grou
 Build with [stack](https://github.com/commercialhaskell/stack):
 
 ```
-$ stack build
+$ stack install
 ```
 
 Usage is documented with `--help`:
 
 ```
-$ stack exec -- siteswap --help
+$ siteswap --help
 Generate siteswap state diagrams
 
 Usage: siteswap (-p|--props N) (-m|--maxThrow H)
@@ -35,7 +35,7 @@ Available options:
 The resulting dot code can be piped into `dot` to render an image:
 
 ```
-$ stack exec -- siteswap -p 3 -m 5 | dot -Tpng -o image.png
+$ siteswap -p 3 -m 5 | dot -Tpng -o image.png
 ```
 
 ## Example
