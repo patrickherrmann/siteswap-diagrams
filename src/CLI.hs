@@ -1,14 +1,27 @@
 module CLI
   ( Options(..)
-  , optParser
+  , parseOptions
   ) where
 
 import Options.Applicative
 
 data Options = Options
-  { props :: Int
+  { props    :: Int
   , maxThrow :: Int
   }
+
+parseOptions = execParser optParser
+
+optParser = info (helper <*> parseOpts)
+  $  fullDesc
+  <> header "Generate siteswap state diagrams"
+  <> progDesc "Generate siteswap state diagrams, rendered in dot format.\
+             \ Pipe output into 'dot' to render the graph in a variety\
+             \ of input formats."
+
+parseOpts = Options
+  <$> parseProps
+  <*> parseMaxThrow
 
 parseProps = option auto
   $  long "props"
@@ -21,14 +34,3 @@ parseMaxThrow = option auto
   <> short 'm'
   <> metavar "H"
   <> help "Ignore throws higher than H"
-
-parseOptions = Options
-  <$> parseProps
-  <*> parseMaxThrow
-
-optParser = info (helper <*> parseOptions)
-           $  fullDesc
-           <> header "Generate siteswap state diagrams"
-           <> progDesc "Generate siteswap state diagrams, rendered in dot format.\
-                       \ Pipe output into 'dot' to render the graph in a variety\
-                       \ of input formats."

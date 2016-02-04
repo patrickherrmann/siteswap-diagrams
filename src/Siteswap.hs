@@ -4,6 +4,7 @@ module Siteswap
   , MaxThrow(..)
   , SiteswapEdge
   , groundState
+  , isGroundState
   , propCount
   , availableThrows
   , performThrow
@@ -24,6 +25,9 @@ type SiteswapEdge = (SiteswapState, SiteswapState, Int)
 
 groundState :: PropCount -> SiteswapState
 groundState (PropCount n) = SiteswapState $ bit n - 1
+
+isGroundState :: SiteswapState -> Bool
+isGroundState (SiteswapState s) = s .&. (s + 1) == 0
 
 propCount :: SiteswapState -> PropCount
 propCount (SiteswapState s) = PropCount $ popCount s
