@@ -13,9 +13,7 @@ module Siteswap
   ) where
 
 import Data.Bits
-import Data.Word
 import Data.List
-import Control.Applicative
 import Control.Monad.State.Lazy
 
 newtype SiteswapState = SiteswapState Word deriving (Eq)
@@ -34,9 +32,10 @@ propCount (SiteswapState s) = PropCount $ popCount s
 
 showState :: MaxThrow -> SiteswapState -> String
 showState (MaxThrow mt) (SiteswapState s) = bin <$> [0..mt]
-  where bin i
-          | testBit s i = '1'
-          | otherwise = '0'
+  where
+    bin i
+      | testBit s i = '1'
+      | otherwise = '0'
 
 availableThrows :: MaxThrow -> SiteswapState -> [Int]
 availableThrows (MaxThrow mt) (SiteswapState s)
