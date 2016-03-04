@@ -1,0 +1,23 @@
+name: siteswap
+version: 1.0.0
+synopsis: Generate siteswap state diagrams
+description: Draw graphs representing siteswap states and transitions.
+license: MIT
+author: Patrick Herrmann
+maintainer: patrickwherrmann@gmail.com
+copyright: 2016 Patrick Herrmann
+category: Graphics
+github: patrickherrmann/siteswap-diagrams
+
+ghc-options: -Wall -fno-warn-missing-signatures
+
+executables:
+  siteswap:
+    source-dirs: src
+    main: Main.hs
+    dependencies:
+      - base == 4.*
+      - mtl
+      - graphviz
+      - text
+      - optparse-applicative
